@@ -1,10 +1,10 @@
-var express = require('express');
-var path = require('path');
+const express = require("express");
+const app = express();
+const product = require("./api/index");
 
-var app = express();
+app.use(express.json({ extended: false }));
 
-app.get('/', function(req, res){
- app.sendFile('./public/index.html') 
-}
-       
-app.listen(3000)
+app.use("/api/index", product);
+
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => console.log(`Server is running in port ${PORT}`));
